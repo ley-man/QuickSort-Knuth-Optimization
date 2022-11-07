@@ -1,8 +1,8 @@
 #include <stdio.h>
+#include <time.h>
 
 #include <cstdlib>
 #include <ctime>
-#include <time.h>
 #include <iostream>
 using namespace std;
 
@@ -23,19 +23,18 @@ class QuickSort {
   }
 
   // Fisher Yates shuffle
-  // Pseudo code found on https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
-  void shuffleArray(int *arr)
-  {
-      int randIndex;
-      srand(time(NULL)); // Seed with time
-      
-      int arrLen = sizeof(arr)/sizeof(arr[0]);
+  // Pseudo code found on
+  // https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
+  void shuffleArray(int *array, int size_arr) {
+    int randIndex;
+    srand(time(NULL));  // Seed with time
 
-      for(int iter = 0; iter < arrLen - 1; iter++) 
-      {
-          randIndex = rand() % (iter + 1);
-          swap(arr, iter, randIndex);
-      }
+    // size_t arrLen = sizeof(array) / sizeof(array[0]);
+    // cout << arrLen << '\n';
+    for (int iter = 0; iter < size_arr - 1; iter++) {
+      randIndex = rand() % (iter + 1);
+      swap(array, iter, randIndex);
+    }
   }
 
   void QuickSortLomuto(int *array, int left, int right) {
@@ -84,22 +83,31 @@ class QuickSort {
 
 int main() {
   QuickSort a;
+  constexpr int n = 10;
+  // Allocate an array of n size
+  int *fishYatesArr = (int *)malloc(n * sizeof(int));
 
-   
-  //Allocate an array of n size
-  int *fishYatesArr = (int*)malloc(10000 * sizeof(int));
+  for (int i = 0; i < n; i++) *(fishYatesArr + i) = i;
+  // size_t size_array = sizeof(fishYatesArr) / sizeof(fishYatesArr[0]);
 
-  for(int i = 0; i < 10000; i++)
-      *(fishYatesArr + i) = i;
+  a.shuffleArray(fishYatesArr, n);
 
-  a.shuffleArray(fishYatesArr);
-  
-
+  a.printArray(fishYatesArr, n);
+  int size_array = n;
   // int array[] = {2, 8, 7, 1, 3, 5, 6, 4};
   int array[] = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
   // TO be tested on larger arrays and Fishcer_Yates!
 
-  // int array[] = {1, 2, 2, 1, 2, 1, 1, 2};
+  std::cout << "Before Quick Sort :" << ' ';
+  a.printArray(array, size_array);
+
+  // a.QuickSortHoare(array, 0, size_array - 1);
+  a.QuickSortLomuto(array, 0, size_array - 1);
+
+  std::cout << "After Quick Sort :" << ' ';
+  a.printArray(array, size_array);
+
+  /*// int array[] = {1, 2, 2, 1, 2, 1, 1, 2};
   size_t size_array = sizeof(array) / sizeof(array[0]);
 
   std::cout << "Before Quick Sort :" << ' ';
@@ -114,6 +122,7 @@ int main() {
   a.QuickSortLomuto(array, 0, size_array - 1);
   std::cout << "QS on sorted array :" << ' ';
   a.printArray(array, size_array);
+  */
 
   return (0);
 }
