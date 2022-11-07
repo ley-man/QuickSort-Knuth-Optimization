@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <time.h>
 #include <iostream>
 using namespace std;
 
@@ -19,6 +20,22 @@ class QuickSort {
     int temp = array[pos1];
     array[pos1] = array[pos2];
     array[pos2] = temp;
+  }
+
+  // Fisher Yates shuffle
+  // Pseudo code found on https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
+  void shuffleArray(int *arr)
+  {
+      int randIndex;
+      srand(time(NULL)); // Seed with time
+      
+      int arrLen = sizeof(arr)/sizeof(arr[0]);
+
+      for(int iter = 0; iter < arrLen - 1; iter++) 
+      {
+          randIndex = rand() % (iter + 1);
+          swap(arr, iter, randIndex);
+      }
   }
 
   void QuickSortLomuto(int *array, int left, int right) {
@@ -67,6 +84,16 @@ class QuickSort {
 
 int main() {
   QuickSort a;
+
+   
+  //Allocate an array of n size
+  int *fishYatesArr = (int*)malloc(10000 * sizeof(int));
+
+  for(int i = 0; i < 10000; i++)
+      *(fishYatesArr + i) = i;
+
+  a.shuffleArray(fishYatesArr);
+  
 
   // int array[] = {2, 8, 7, 1, 3, 5, 6, 4};
   int array[] = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
