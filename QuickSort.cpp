@@ -8,9 +8,8 @@ using namespace std;
 class QuickSort {
  private:
  public:
-  template <typename Type, int Size>
-  void printArray(Type const (&array)[Size]) {
-    for (int i = 0; i < Size; i++) std::cout << array[i] << ' ';
+  void printArray(int *array, int size) {
+    for (int i = 0; i < size; ++i) std::cout << array[i] << ' ';
     cout << '\n';
   }
 
@@ -21,31 +20,46 @@ class QuickSort {
     array[pos1] = array[pos2];
     array[pos2] = temp;
   }
-  void QuickSortRandomLomuto(int array[], int size_a) {}
+  void QuickSortLomuto(int array[], int size_a) {}
 
-  void QuickSortRandomHoare(int *array, int left, int right) {
+  void QuickSortHoare(int *array, int left, int right) {
     // Left and Right are extreme indexes of the array
     int i = left;
     int j = right;
     // srand((unsigned int)time(NULL));  // Generate random numbers using time
     srand(10);
-    int pick = rand() % (j - i);
+    int pick = rand() % (j);
     int pivot = array[pick];
-    // cout << pivot << '\n';
-    // while (i < j) {
-    // while
-    // array[i] <= pivot and i < j
-    // }
+    while (i <= j) {
+      while (array[i] < pivot) {
+        i++;
+      }
+      while (array[j] > pivot) {
+        j--;
+      }
+      if (i <= j) {
+        swap(array, i, j);
+        i++;
+        j--;
+      }
+    }
+    if (j > left) QuickSortHoare(array, left, j);
+    if (i < right) QuickSortHoare(array, i, right);
   }
 };
 
 int main() {
   QuickSort a;
 
-  int input[] = {2, 8, 7, 1, 3, 5, 6, 4};
-  size_t size_array = sizeof(input) / sizeof(input[0]);
-  a.QuickSortRandomHoare(input, 0, size_array);
-  a.printArray(input);
-  a.swap(input, 2, 3);
-  a.printArray(input);
+  int array[] = {2, 8, 7, 1, 3, 5, 6, 4};
+  size_t size_array = sizeof(array) / sizeof(array[0]);
+
+  std::cout << "Before Quick Sort :" << ' ';
+  a.printArray(array, size_array);
+
+  a.QuickSortHoare(array, 0, size_array);
+
+  std::cout << "After Quick Sort :" << ' ';
+  a.printArray(array, size_array);
+  return (0);
 }
