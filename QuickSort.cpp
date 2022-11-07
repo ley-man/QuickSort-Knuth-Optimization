@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <time.h>
-
+#include <math.h>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -79,20 +79,34 @@ class QuickSort {
     if (j > left) QuickSortHoare(array, left, j);
     if (i < right) QuickSortHoare(array, i, right);
   }
+
+
+  void knuthQuicksort()
+  {
+
+  }      
+
+  void partialQuicksort()
+  {
+
+  }
 };
 
 int main() {
   QuickSort a;
-  constexpr int n = 10;
+  constexpr int n = pow(10, 6);
+
   // Allocate an array of n size
   int *fishYatesArr = (int *)malloc(n * sizeof(int));
 
   for (int i = 0; i < n; i++) *(fishYatesArr + i) = i;
-  // size_t size_array = sizeof(fishYatesArr) / sizeof(fishYatesArr[0]);
-
+  
   a.shuffleArray(fishYatesArr, n);
 
+  //a.QuickSortLomuto(fishYatesArr, 0, n - 1);
+
   a.printArray(fishYatesArr, n);
+ 
   int size_array = n;
   // int array[] = {2, 8, 7, 1, 3, 5, 6, 4};
   int array[] = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
