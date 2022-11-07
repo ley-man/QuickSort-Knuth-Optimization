@@ -94,12 +94,8 @@ class QuickSort {
 
 int main() {
   QuickSort a;
-<<<<<<< Updated upstream
-  constexpr int n = pow(10, 6);
-
-=======
   constexpr int n = 1000000;
->>>>>>> Stashed changes
+  
   // Allocate an array of n size
   int *fishYatesArr = (int *)malloc(n * sizeof(int));
 
@@ -107,14 +103,10 @@ int main() {
   
   a.shuffleArray(fishYatesArr, n);
 
-<<<<<<< Updated upstream
-  //a.QuickSortLomuto(fishYatesArr, 0, n - 1);
+  a.QuickSortLomuto(fishYatesArr, 0, n - 1);
 
   a.printArray(fishYatesArr, n);
  
-=======
-  // a.printArray(fishYatesArr, n);
->>>>>>> Stashed changes
   int size_array = n;
   // int array[] = {2, 8, 7, 1, 3, 5, 6, 4};
   // int array[] = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
