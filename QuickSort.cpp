@@ -43,8 +43,8 @@ class QuickSort {
     // Left and Right are extreme indexes of the array
     int i = left;
     int j = right;
-    // srand((unsigned int)time(NULL));  // Generate random numbers using time
-    srand(10);
+    srand((unsigned int)time(NULL));  // Generate random numbers using time
+    // srand(10);
     int pick = rand() % (j);
     int pivot = array[pick];
     while (i <= j) {
@@ -69,7 +69,10 @@ int main() {
   QuickSort a;
 
   // int array[] = {2, 8, 7, 1, 3, 5, 6, 4};
-  int array[] = {1, 2, 2, 1, 2, 1, 1, 2};
+  int array[] = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+  // TO be tested on larger arrays and Fishcer_Yates!
+
+  // int array[] = {1, 2, 2, 1, 2, 1, 1, 2};
   size_t size_array = sizeof(array) / sizeof(array[0]);
 
   std::cout << "Before Quick Sort :" << ' ';
@@ -80,5 +83,10 @@ int main() {
 
   std::cout << "After Quick Sort :" << ' ';
   a.printArray(array, size_array);
+
+  a.QuickSortLomuto(array, 0, size_array - 1);
+  std::cout << "QS on sorted array :" << ' ';
+  a.printArray(array, size_array);
+
   return (0);
 }
