@@ -85,6 +85,16 @@ class QuickSort {
 int main() {
   QuickSort a;
 
+   
+  //Allocate an array of n size
+  int *fishYatesArr = (int*)malloc(10000 * sizeof(int));
+
+  for(int i = 0; i < 10000; i++)
+      *(fishYatesArr + i) = i;
+
+  a.shuffleArray(fishYatesArr);
+  
+
   // int array[] = {2, 8, 7, 1, 3, 5, 6, 4};
   int array[] = {1, 2, 2, 1, 2, 1, 1, 2};
   size_t size_array = sizeof(array) / sizeof(array[0]);
