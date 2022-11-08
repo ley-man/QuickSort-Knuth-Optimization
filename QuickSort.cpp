@@ -1,3 +1,16 @@
+/*
+Sorting mini-project: Professor Dov Kruger
+Team Members
+1. Noah Malhi
+2. Quentin Jimenez
+3. Prashant Kumar
+
+References:
+1. CLRS
+2. // Pseudo code found on
+https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
+
+*/
 #include <math.h>
 #include <stdio.h>
 #include <time.h>
@@ -5,6 +18,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <random>
 using namespace std;
 
 class QuickSort {
@@ -22,19 +36,19 @@ class QuickSort {
     array[pos1] = array[pos2];
     array[pos2] = temp;
   }
-
+  // srand(time(nullptr)1);  // Seed with time
+  // srand(0);
   // Fisher Yates shuffle
-  // Pseudo code found on
-  // https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
-  void shuffleArray(int *array, int size_arr) {
-    int randIndex;
-    srand(time(NULL));  // Seed with time
 
+  std::default_random_engine generator;
+
+  void shuffleArray(int *array, int size_arr) {
     // size_t arrLen = sizeof(array) / sizeof(array[0]);
     // cout << arrLen << '\n';
-    for (int iter = 0; iter < size_arr - 1; iter++) {
-      randIndex = rand() % (iter + 1);
-      swap(array, iter, randIndex);
+    for (int iter = size_arr - 1; iter > 0; iter--) {
+      std::uniform_int_distribution<int> distribution(0, iter);
+      // int randIndex = rand() % (iter + 1);
+      swap(array, iter, distribution(generator));
     }
   }
 
@@ -60,10 +74,14 @@ class QuickSort {
     // Left and Right are extreme indexes of the array
     int i = left;
     int j = right;
-    srand((unsigned int)time(NULL));  // Generate random numbers using time
+    // srand((unsigned int)time(NULL));  // Generate random numbers using time
+    std::uniform_int_distribution<int> distribution(left, right);
+
     // srand(10);
-    int pick = rand() % (j);
+    // int pick = rand() % (j - i) + i;  // Check!!
+    int pick = distribution(generator);
     int pivot = array[pick];
+    cout << "pivot = " << pivot << ' ' << pick << '\n';
     while (i <= j) {
       while (array[i] < pivot) {
         i++;
@@ -85,48 +103,33 @@ class QuickSort {
 
   void partialQuicksort() {}
 };
-
-int main() {
-  QuickSort a;
-  constexpr int n = 100000000;
-  // Allocate an array of n size
-  int *fishYatesArr = (int *)malloc(n * sizeof(int));
-
+void testLargeQS(int n) {
+  int *fishYatesArr = new int[n];
   for (int i = 0; i < n; i++) *(fishYatesArr + i) = i;
-
+  QuickSort a;
   a.shuffleArray(fishYatesArr, n);
 
-  // a.printArray(fishYatesArr, n);
+  a.QuickSortLomuto(fishYatesArr, 0, n - 1);
+
+  // // a.printArray(fishYatesArr, n);
   int size_array = n;
-  // int array[] = {2, 8, 7, 1, 3, 5, 6, 4};
-  // int array[] = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-  // TO be tested on larger arrays and Fishcer_Yates!
+}
+int main() {
+  QuickSort a;
+  constexpr int n = 10000000;
+  testLargeQS(n);
+  // // Allocate an array of n size
 
-  std::cout << "Before Quick Sort :" << ' ';
-  // a.printArray(fishYatesArr, size_array);
+  // // int array[] = {2, 8, 7, 1, 3, 5, 6, 4};
+  // // int array[] = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
-  // a.QuickSortHoare(array, 0, size_array - 1);
-  a.QuickSortLomuto(fishYatesArr, 0, size_array - 1);
+  std::cout << "Test Completed" << ' ';
+  // // a.printArray(fishYatesArr, size_array);
 
-  std::cout << "After Quick Sort :" << ' ';
-  // a.printArray(fishYatesArr, size_array);
+  // // a.QuickSortHoare(array, 0, size_array - 1);
 
-  /*// int array[] = {1, 2, 2, 1, 2, 1, 1, 2};
-  size_t size_array = sizeof(array) / sizeof(array[0]);
-
-  std::cout << "Before Quick Sort :" << ' ';
-  a.printArray(array, size_array);
-
-  // a.QuickSortHoare(array, 0, size_array - 1);
-  a.QuickSortLomuto(array, 0, size_array - 1);
-
-  std::cout << "After Quick Sort :" << ' ';
-  a.printArray(array, size_array);
-
-  a.QuickSortLomuto(array, 0, size_array - 1);
-  std::cout << "QS on sorted array :" << ' ';
-  a.printArray(array, size_array);
-  */
+  // std::cout << "After Quick Sort :" << ' ';
+  // // a.printArray(fishYatesArr, size_array);
 
   return (0);
 }
