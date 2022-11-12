@@ -28,6 +28,12 @@ class QuickSort {
     for (int i = 0; i < size; ++i) std::cout << array[i] << ' ';
     cout << '\n';
   }
+  void printFew(int *array, int size) {
+    for (int i = 0; i < 4; i++) std::cout << array[i] << ' ';
+    cout<<"...";
+    for (int i = size-5; i < size; i++) std::cout << array[i] << ' ';
+    cout << '\n';
+  }
 
   void selectRandom(int a[], int size_array) {}
 
