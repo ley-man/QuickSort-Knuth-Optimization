@@ -105,9 +105,28 @@ class QuickSort {
     if (i < right) QuickSortHoare(array, i, right);
   }
 
-  void knuthQuicksort() {}
 
-  void partialQuicksort() {}
+  void insertionSort(int *array, int size)
+  {
+      int iter;
+      int currVal, prevIter;
+
+      for(iter = 1; iter < size; iter++)
+      {
+          currVal = *(array + iter);
+          prevIter = iter - 1;
+
+          while(prevIter >= 0 && *(array + prevIter) > currVal )
+          {
+              *(array + prevIter + 1) = *(array + prevIter);
+              prevIter = prevIter - 1;
+          }
+
+          *(array + prevIter + 1) = currVal;
+      }
+  }
+
+
 };
 void testLargeQS(int n) {
   int *fishYatesArr = new int[n];
@@ -117,12 +136,14 @@ void testLargeQS(int n) {
 
   a.QuickSortLomuto(fishYatesArr, 0, n - 1);
 
-  // // a.printArray(fishYatesArr, n);
+  //a.insertionSort(fishYatesArr, n);
+  //a.printArray(fishYatesArr, n);
   int size_array = n;
 }
 int main() {
   QuickSort a;
   constexpr int n = 10000000;
+  //constexpr int n = 1000;
   testLargeQS(n);
   // // Allocate an array of n size
 
