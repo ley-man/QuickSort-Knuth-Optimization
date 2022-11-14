@@ -15,31 +15,31 @@ ARBITRARY TESTING (All passed)
 
 TESTING RESULTS
 Lomuto Partioning Scheme (with shuffle)
-n = 10^1, time = .. ms
-n = 10^2, time = .. ms
-n = 10^3, time = .. ms
-n = 10^4, time = .. ms
-n = 10^5, time = .. ms
-n = 10^6, time = .. ms
-n = 10^7, time = .. ms
-n = 10^8, time = .. ms
+n = 10^1, time = .. ms,
+n = 10^2, time = .. ms,
+n = 10^3, time = .. ms,
+n = 10^4, time = .. ms,
+n = 10^5, time = .. ms,
+n = 10^6, time = .. ms,
+n = 10^7, time = .. ms,
+n = 10^8, time = .. ms.
 
 Lomuto Partioning Scheme (with shuffle)
-n = 10^1, time = .. ms
-n = 10^2, time = .. ms
-n = 10^3, time = .. ms
-n = 10^4, time = .. ms
-n = 10^5, time = .. ms
-n = 10^6, time = .. ms
-n = 10^7, time = .. ms
-n = 10^8, time = .. ms
+n = 10^1, time = .. ms,
+n = 10^2, time = .. ms,
+n = 10^3, time = .. ms,
+n = 10^4, time = .. ms,
+n = 10^5, time = .. ms,
+n = 10^6, time = .. ms,
+n = 10^7, time = .. ms,
+n = 10^8, time = .. ms.
 
 Knuth Sort (partialQuicksort + insertionSort)
-n = 10^6, k = 1, time = .. ms
-n = 10^6, k = 10^6, time = .. ms
-n = 10^6, k = , time = .. ms
-n = 10^6, k = , time = .. ms
-n = 10^6, k = , time = .. ms
-n = 10^6, k = , time = .. ms
-n = 10^6, k = , time = .. ms
-n = 10^6, k = , time = .. ms
+n = 10^6, k = 1, time = .. ms,
+n = 10^6, k = 10^6, time = .. ms,
+n = 10^6, k = , time = .. ms,
+n = 10^6, k = , time = .. ms,
+n = 10^6, k = , time = .. ms,
+n = 10^6, k = , time = .. ms,
+n = 10^6, k = , time = .. ms,
+n = 10^6, k = , time = .. ms.
