@@ -1,5 +1,5 @@
   // This function chooses a random pivot point resulting in average case nlogn
-  void QuickSortRandomLomuto(int *array, int left, int right) {
+  void QuickSortLomuto(int *array, int left, int right) {
     if (left < right) {
       std::uniform_int_distribution<int> distribution(left, right);
       int pivot = array[distribution(generator)];
@@ -14,7 +14,7 @@
       }
       swap(array, i+1, right);
       int q = i+1;
-      QuickSortRandomLomuto(array, left, q-1);
-      QuickSortRandomLomuto(array, q+1, right);
+      QuickSortLomuto(array, left, q-1);
+      QuickSortLomuto(array, q+1, right);
     }
   }

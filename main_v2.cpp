@@ -114,48 +114,23 @@ class QuickSort {
   }
   
   // This function chooses a random pivot point resulting in average case nlogn
-  void QuickSortRandomLomuto(int *array, int left, int right) {
-      
-      
-      if (left < right) {
-          int i = left - 1;
-          std::uniform_int_distribution<int> distribution(left, right);
-          int pivot = array[distribution(generator)];
-
-          // int q;
-          //int pivot = array[right]; //Pick right element as pivot
-          for (int j = left; j <= right - 1; j++) {
-              if (array[j] <= pivot) {
-                  i++;
-                  swap(array, i, j);
-              }
-          }
-          swap(array, i + 1, right);
-          int q = i + 1;
-          QuickSortRandomLomuto(array, left, q - 1);
-          QuickSortRandomLomuto(array, q + 1, right);
-      }
-  }
-
-  //Same as above but uses the last element as the pivot always
   void QuickSortLomuto(int *array, int left, int right) {
     if (left < right) {
+      std::uniform_int_distribution<int> distribution(left, right);
+      int pivot = array[distribution(generator)];
+      swap(array, right, pivot);
+      int x = array[right];
       int i = left - 1;
-      // int q;
-      int pivot = array[right]; //Pick right element as pivot
-      // std::uniform_int_distribution<int> distribution(left, right);
-      // int pick = distribution(generator);
-      // int pivot = array[pick];
-      for (int j = left; j <= right - 1; j++) {
-        if (array[j] <= pivot) {
-          i++;
+      for (int j = left; j<=right-1; j++){
+        if (array[j]<=x){
+          i = i + 1;
           swap(array, i, j);
         }
       }
-      swap(array, i + 1, right);
-      int q = i + 1;
-      QuickSortLomuto(array, left, q - 1);
-      QuickSortLomuto(array, q + 1, right);
+      swap(array, i+1, right);
+      int q = i+1;
+      QuickSortLomuto(array, left, q-1);
+      QuickSortLomuto(array, q+1, right);
     }
   }
 
@@ -248,7 +223,7 @@ void testLarge(int n){
   cout<<"Shuffled Array: "<<'\n';
   a.shuffleArrayFY(array, n);
   a.printFew(array, n);
-  a.QuickSortRandomLomuto(array, 0, n-1);
+  a.QuickSortLomuto(array, 0, n-1);
   cout<<"Lomuto Sorted Array: "<<'\n';
   a.printFew(array, n);
   a.shuffleArrayFY(array, n);
@@ -277,11 +252,11 @@ int optimizeK(int n){
 
 int main() {
   QuickSort a;
-  //constexpr int n = 10000000;
-  constexpr int n = 100;
+  constexpr int n = 10000000;
+  //constexpr int n = 100;
   //constexpr int n1 = 1000000; //10^7- for optimimizing k
-  //testLarge(n); // First part of the mini-project.
-  //int k_opt = optimizeK(n); //Extra credits(Uncomment this to run golden mean)
+  testLarge(n); // First part of the mini-project.
+  int k_opt = optimizeK(n); //Extra credits(Uncomment this to run golden mean)
   //Use k_opt to sort the shuffled array
   int *array = new int[n];
   for (int i =0; i < n; i++){
@@ -290,10 +265,10 @@ int main() {
   a.printFew(array, n);
   a.shuffleArrayFY(array, n);
   a.printFew(array, n);
-  a.QuickSortRandomLomuto(array, 0, n - 1);
-  //a.knuthQuickSort(array, n, k_opt);
-  //a.printFew(array, n);
-  a.printArray(array, n);
+  //a.QuickSortLomuto(array, 0, n - 1);
+  a.knuthQuickSort(array, n, k_opt);
+  a.printFew(array, n);
+  //a.printArray(array, n);
   
   return (0);
 }
