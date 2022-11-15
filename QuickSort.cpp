@@ -128,6 +128,8 @@ class QuickSort {
 
 
 };
+
+
 void testLargeQS(int n) {
   int *fishYatesArr = new int[n];
   for (int i = 0; i < n; i++) *(fishYatesArr + i) = i;
@@ -142,7 +144,7 @@ void testLargeQS(int n) {
 }
 int main() {
   QuickSort a;
-  constexpr int n = 10000000;
+  constexpr int n = 100000000;
   //constexpr int n = 1000;
   testLargeQS(n);
   // // Allocate an array of n size

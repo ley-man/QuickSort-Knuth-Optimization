@@ -185,7 +185,7 @@ class QuickSort {
   
   int goldenSectionSearch(int *array, int n, int a, int b){ //a-left, b-right
     float phi = (1 + sqrt(5))/2;
-    int tolerance = 3; //stop if search space is less than tolerance
+    int tolerance = 5; //stop if search space is less than tolerance
     int k_optimum = (a + b)/2;
     cout<<"Optimum K: "<< k_optimum<<'\n';
     int s = (b-a)/phi;
@@ -251,8 +251,8 @@ int optimizeK(int n){
 
 int main() {
   QuickSort a;
-  constexpr int n = 1000000;
-  constexpr int n1 = 1000000; //10^7- for optimimizing k
+  constexpr int n = 10000000;
+  //constexpr int n1 = 1000000; //10^7- for optimimizing k
   testLarge(n); // First part of the mini-project.
   int k_opt = optimizeK(n); //Extra credits(Uncomment this to run golden mean)
   //Use k_opt to sort the shuffled array
