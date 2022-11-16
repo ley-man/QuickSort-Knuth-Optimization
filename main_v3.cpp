@@ -239,7 +239,7 @@ int optimizeK(int n){
   }
   a.shuffleArrayFY(array, n);
   //k1 and k2 are the ends of the search space for goldenSectionSearch
-  int k1 = 10;
+  int k1 = 1;
   int k2 = 1000;
   int k_opt = a.goldenSectionSearch(array, n, k1, k2);
   cout<<"Optimum k is : "<<k_opt<<'\n';
