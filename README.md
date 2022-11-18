@@ -1,4 +1,4 @@
-# QuickSort-Knuth-Optimization
+#  QuickSort-Knuth-Optimization
 Implementation of the classical Quicksort Algorithm along with Lamuto partitions.
 
 Team Members:
